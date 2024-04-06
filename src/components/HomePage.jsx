@@ -45,7 +45,7 @@ const HomePage = () => {
             </p>
 
             <button className="btn btn-primary w-max mt-4">
-              <a href="https://wa.link/6gedn7">Contact us</a>
+              <a href="https://wa.link/g900ee">Contact us</a>
             </button>
           </div>
           <img
@@ -61,7 +61,10 @@ const HomePage = () => {
         data-aos-once="true"
       >
         <div className="hero-content flex-col lg:flex-row">
-          <img src={humanitarian} className="max-w-sm rounded-lg shadow-2xl" />
+          <img
+            src={humanitarian}
+            className="w-full max-w-sm rounded-lg shadow-2xl"
+          />
           <div>
             <span className="text-xs font-bold text-accent">REACH OUT</span>
             <h1 className="text-4xl md:text-5xl font-bold">
