@@ -1,0 +1,13 @@
+MongoDb Details
+
+Login
+~ email: flexy008@yahoo.com
+~ password: Thankyoulord123@@
+ 
+MongoDb cluster login details
+~ username: flexy008
+~ password: ycKiaEG0OjkcW4OF
+
+Admin Dashboard Login
+~name: boss
+~password: Aa$12345
