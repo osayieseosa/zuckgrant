@@ -48,7 +48,11 @@ const HomePage = () => {
               <a href="https://wa.link/g900ee">Contact us</a>
             </button>
           </div>
-          <img className="w-full object-cover" src={heroImage} alt="/" />
+          <img
+            className="w-full h-screen object-cover"
+            src={heroImage}
+            alt="/"
+          />
         </div>
       </div>
       <div
@@ -59,7 +63,7 @@ const HomePage = () => {
         <div className="hero-content flex-col lg:flex-row">
           <img
             src={humanitarian}
-            className="w-full h-screen max-w-sm rounded-lg shadow-2xl"
+            className="w-full max-w-sm rounded-lg shadow-2xl"
           />
           <div>
             <span className="text-xs font-bold text-accent">REACH OUT</span>
