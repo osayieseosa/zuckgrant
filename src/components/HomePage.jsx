@@ -59,7 +59,7 @@ const HomePage = () => {
         <div className="hero-content flex-col lg:flex-row">
           <img
             src={humanitarian}
-            className="w-full max-w-sm rounded-lg shadow-2xl"
+            className="w-full h-screen max-w-sm rounded-lg shadow-2xl"
           />
           <div>
             <span className="text-xs font-bold text-accent">REACH OUT</span>
