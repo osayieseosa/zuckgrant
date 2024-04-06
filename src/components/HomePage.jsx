@@ -48,11 +48,7 @@ const HomePage = () => {
               <a href="https://wa.link/g900ee">Contact us</a>
             </button>
           </div>
-          <img
-            className="w-full h-screen object-cover"
-            src={heroImage}
-            alt="/"
-          />
+          <img className="w-full object-cover" src={heroImage} alt="/" />
         </div>
       </div>
       <div
