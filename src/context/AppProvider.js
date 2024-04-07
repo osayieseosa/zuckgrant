@@ -10,7 +10,6 @@ export const AppProvider = ({children}) => {
         try {
           const response = await axios.get("/lotteryInfo");
           setLotteryWinners(response.data);
-          console.log(response.data)
         } catch (error) {
           console.log(error);
         }
