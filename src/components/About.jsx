@@ -114,9 +114,9 @@ const About = () => {
       <section className="w-full text-center px-5 py-10 bg-base-200 flex flex-col gap-5 place-items-center">
         <h3>The most trusted and performant humanitarian organization</h3>
         Get in touch today
-        <button className="btn btn-secondary w-[300px]">
-          <a href="https://wa.link/g900ee">Click Me!</a>
-        </button>
+        <a href="https://wa.link/g900ee">
+          <button className="btn btn-secondary w-[300px]">Click Me!</button>
+        </a>
       </section>
     </div>
   );

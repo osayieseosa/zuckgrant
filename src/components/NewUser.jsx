@@ -7,6 +7,7 @@ const NewUser = () => {
   const { getLotteryWinners } = useContext(AppContext);
   const [image, setImage] = useState("");
   const [fullname, setFullname] = useState("");
+  const [luckyNumber, setLuckyNumber] = useState("");
   const [amountWon, setAmountWon] = useState("");
   const [nationality, setNationality] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -41,18 +42,13 @@ const NewUser = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      console.log({
-        picture: image,
-        fullname,
-        amountWon,
-        nationality,
-      });
       await axios.post(
         "/lotteryInfo",
         {
           picture: image,
           fullname,
           amountWon,
+          luckyNumber,
           nationality,
         },
         {
@@ -140,7 +136,20 @@ const NewUser = () => {
                 />
               </div>
               <div className="form-control">
-                <label className="label"></label>
+                <label className="label">
+                  <span className="label-text">Enter Lucky Number</span>
+                </label>
+                <input
+                  type="text"
+                  value={luckyNumber}
+                  onChange={(e) => setLuckyNumber(e.target.value)}
+                  required
+                  placeholder="Full Name"
+                  className="input input-bordered input-primary w-full  max-w-xs"
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">Enter Amount Won</label>
                 <input
                   type="number"
                   value={amountWon}

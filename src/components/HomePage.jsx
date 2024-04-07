@@ -44,9 +44,9 @@ const HomePage = () => {
               individuals worldwide affected by COVID-19 and other calamities
             </p>
 
-            <button className="btn btn-primary w-max mt-4">
-              <a href="https://wa.link/g900ee">Contact us</a>
-            </button>
+            <a href="https://wa.link/g900ee">
+              <button className="btn btn-primary w-max mt-4">Contact us</button>
+            </a>
           </div>
           <img
             className="w-full h-screen object-cover"
@@ -75,9 +75,9 @@ const HomePage = () => {
               We are proud to announce that our empowerment program has been
               recognized by the government as a humanitarian organization.
             </p>
-            <button className="btn btn-primary">
-              <a href="https://wa.link/6gedn7">Donate</a>
-            </button>
+            <a href="https://wa.link/6gedn7">
+              <button className="btn btn-primary">Donate</button>
+            </a>
           </div>
         </div>
       </div>
