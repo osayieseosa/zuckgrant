@@ -86,7 +86,7 @@ const Drawer = () => {
                 <Link to="/winners">Lottery Winners</Link>
               </li>
               <li>
-                <Link to="/compform">compliance form</Link>
+                <Link to="/compform">Claim Application</Link>
               </li>
               <li>
                 <Link to="/privacy">Privacy Policy</Link>
@@ -129,7 +129,7 @@ const Drawer = () => {
             <Link to="/winners">Lottery Winners</Link>
           </li>
           <li>
-            <Link to="/compform">Compliance Form</Link>
+            <Link to="/compform">Claim Application</Link>
           </li>
           <li>
             <Link to="/privacy">Privacy Policy</Link>
