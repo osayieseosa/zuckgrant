@@ -3,23 +3,10 @@ import axios from "../api/axios";
 
 const Contact = () => {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      setIsLoading(true);
-      await axios.post("/email", { name, email, message });
-      setName("");
-      setEmail("");
-      setMessage("");
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
   };
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -51,21 +38,6 @@ const Contact = () => {
                 required
               />
             </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-                placeholder="email"
-                className="input input-bordered"
-                required
-              />
-            </div>
             <label className="form-control">
               <div className="label">
                 <span className="label-text">Message</span>
@@ -82,12 +54,13 @@ const Contact = () => {
               </div>
             </label>
             <div className="form-control mt-6">
-              <button
+              <a
                 className="btn btn-primary"
-                disabled={isLoading ? true : false}
+                disabled={!message || !name ? true : false}
+                href={`mailto:claim@zuckerreliefglobalgrant.org?body=${message}?subject=Enquiry for zucker relief global grant by ${name}`}
               >
-                {isLoading ? "Loading..." : "Send"}
-              </button>
+                Send
+              </a>
             </div>
           </form>
         </div>
