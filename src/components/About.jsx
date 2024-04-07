@@ -63,7 +63,10 @@ const About = () => {
         <br />
         <br />
         <div className="hero-content flex-col lg:flex-row">
-          <img src={abfirst} className="max-w-sm rounded-lg shadow-2xl" />
+          <img
+            src={abfirst}
+            className="w-full max-w-sm rounded-lg shadow-2xl"
+          />
           <div>
             <p className="py-6">
               {" "}
@@ -89,7 +92,10 @@ const About = () => {
         <br />
         <div className="hero h-max">
           <div className="hero-content flex-col lg:flex-row-reverse">
-            <img src={absecond} className="max-w-sm rounded-lg shadow-2xl" />
+            <img
+              src={absecond}
+              className="w-full max-w-sm rounded-lg shadow-2xl"
+            />
             <div>
               <p className="py-6">
                 {" "}

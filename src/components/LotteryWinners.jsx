@@ -46,6 +46,11 @@ const LotteryWinners = () => {
                   <h2 className="card-title text-sm">
                     {lotteryWinner.fullname}
                   </h2>
+                  {lotteryWinner?.luckyNumber && (
+                    <p className="text-xs">
+                      Lucky Number:&nbsp;{lotteryWinner.luckyNumber}
+                    </p>
+                  )}
                   <p className="text-xs">
                     Nationality:&nbsp;{lotteryWinner.nationality}
                   </p>
