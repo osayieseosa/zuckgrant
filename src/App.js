@@ -12,6 +12,8 @@ import NewUser from './components/NewUser';
 import EditWinner from './components/EditWinner';
 import AdminLogin from './components/AdminLogin';
 import RequireAuth from './components/RequireAuth';
+import CompForm from './components/CompForm';
+import EditApplicants from './components/EditApplicants';
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
         <Route element={<Drawer/>}>
           <Route index element={<HomePage />}/>
           <Route path='/about' element={<About/>}/>
+          <Route path='/compform' element={<CompForm/>}/>
           <Route path='/contact' element={<Contact/>}/>
           <Route path='/winners' element={<LotteryWinners/>}/>
           <Route path='/terms' element={<Terms/>}/>
@@ -28,7 +31,8 @@ function App() {
           <Route element={<RequireAuth allowedRoles="1849"/>}>
           <Route path='/admin' element={<Admin/>}/>
           <Route path='/newWinner' element={<NewUser/>}/>
-          <Route path='/edit/:reqName/:reqAmount/:reqNationality/:reqId' element={<EditWinner/>}/>
+          <Route path='/edit/:reqName/:reqAmount/:reqNationality/:reqLuckyNumber/:reqId' element={<EditWinner/>}/>
+          <Route path='/applicant/:reqName/:reqWinningNumber/:reqNationality/:reqBirthDate/:reqTel/:reqEmail/:reqAddress/:id' element={<EditApplicants/>}/>
           </Route>
         </Route>
       </Route>

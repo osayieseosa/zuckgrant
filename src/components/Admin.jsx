@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import Avatar from "../images/avatar.svg";
 import AppContext from "../context/AppProvider";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
-  const { lotteryWinners } = useContext(AppContext);
+  const { lotteryWinners, applicants } = useContext(AppContext);
   const today = new Date();
   const navigate = useNavigate();
 
@@ -41,8 +41,57 @@ const Admin = () => {
             <tr>
               <th></th>
               <th>Name</th>
+              <th>Winning Number</th>
+              <th>nationality</th>
+              <th>Date of birth</th>
+              <th>Telephone</th>
+              <th>Email</th>
+              <th>Address</th>
+              <th>Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            {applicants.length ? (
+              applicants.map((applicant, length, id) => {
+                return (
+                  <tr key={id}>
+                    <th>{length + 1}</th>
+                    <td>{applicant.fullname}</td>
+                    <td>{applicant.winningNumber}</td>
+                    <td>{applicant.nationality}</td>
+                    <td>{applicant.birthDate}</td>
+                    <td>{applicant.tel}</td>
+                    <td>{applicant.email}</td>
+                    <td>{applicant.address}</td>
+                    <td
+                      className="cursor-pointer"
+                      onClick={() =>
+                        navigate(
+                          `/applicant/${applicant.fullname}/${applicant.winningNumber}/${applicant.nationality}/${applicant.birthDate}/${applicant.tel}/${applicant.email}/${applicant.address}/${applicant._id}`
+                        )
+                      }
+                    >
+                      <FaEdit />
+                    </td>
+                  </tr>
+                );
+              })
+            ) : (
+              <div>No Applicants to display</div>
+            )}
+          </tbody>
+        </table>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="table table-zebra">
+          {/* head */}
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
               <th>Amount</th>
-              <th>Favorite Color</th>
+              <th>Country</th>
+              <th>Lucky Number</th>
               <th>Edit</th>
             </tr>
           </thead>
@@ -73,11 +122,12 @@ const Admin = () => {
                       })}
                     </td>
                     <td>{lotteryWinner.nationality}</td>
+                    <td>{lotteryWinner.luckyNumber}</td>
                     <td
                       className="cursor-pointer"
                       onClick={() =>
                         navigate(
-                          `/edit/${lotteryWinner.fullname}/${lotteryWinner.amountWon}/${lotteryWinner.nationality}/${lotteryWinner._id}`
+                          `/edit/${lotteryWinner.fullname}/${lotteryWinner.amountWon}/${lotteryWinner.nationality}/${lotteryWinner.luckyNumber}/${lotteryWinner._id}`
                         )
                       }
                     >

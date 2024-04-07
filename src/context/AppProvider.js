@@ -6,6 +6,18 @@ const AppContext = createContext({})
 export const AppProvider = ({children}) => {
     const companyName = 'Zucker Global Relief Grants'
     const [lotteryWinners, setLotteryWinners] = useState({})
+    const [applicants, setApplicants] = useState({})
+
+
+    const getApplicants = async () => {
+      try {
+        const response = await axios.get('/apply')
+        setApplicants(response.data)
+        console.log(response.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
     const getLotteryWinners = async () => {
         try {
           const response = await axios.get("/lotteryInfo");
@@ -16,10 +28,11 @@ export const AppProvider = ({children}) => {
       };
     useEffect(() => {
         getLotteryWinners();
+        getApplicants()
       }, []);
 
     return (
-    <AppContext.Provider value={{companyName,lotteryWinners,setLotteryWinners, getLotteryWinners}}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{companyName,lotteryWinners,setLotteryWinners, getLotteryWinners, getApplicants, applicants, setApplicants}}>{children}</AppContext.Provider>
     )
 }
 

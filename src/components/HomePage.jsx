@@ -58,6 +58,7 @@ const HomePage = () => {
       <div
         className="hero min-h-screen bg-base-200"
         data-aos="slide-left"
+        data-aos-duration="2000"
         data-aos-once="true"
       >
         <div className="hero-content flex-col lg:flex-row">
@@ -162,10 +163,10 @@ const HomePage = () => {
           </div>
           <div className="collapse-content">
             <p>
-              Absolutely not our goal and mission is to reach out to all
-              individuals affected by the COVID 19 pandemic, Since our inception
-              we have made it a priority of ours and we have successfully
-              reached over 5 million people over the globe.
+              Absolutely our goal and mission is to reach out to all individuals
+              affected by the COVID 19 pandemic and we are an aid to disaster
+              relief, Since our inception we have made it a priority of ours and
+              we have successfully reached over 5 million people over the globe.
             </p>
           </div>
         </div>
@@ -185,14 +186,30 @@ const HomePage = () => {
         <div className="collapse collapse-arrow bg-base-200 mb-10">
           <input type="radio" name="my-accordion-2" />
           <div className="collapse-title text-xl font-medium">
-            Is this just for citizens of the US
+            How can I get involved with a humanitarian organization?
           </div>
           <div className="collapse-content">
             <p>
-              Absolutely not our goal and mission is to reach out to all
-              individuals affected by the COVID 19 pandemic, Since our inception
-              we have made it a priority of ours and we have successfully
-              reached over 5 million people over the globe.
+              There are various ways to get involved with humanitarian
+              organizations, including volunteering your time and skills,
+              donating money or goods, fundraising, raising awareness about
+              humanitarian issues, advocating for policy changes, and
+              participating in humanitarian missions or projects
+            </p>
+          </div>
+        </div>
+        <div className="collapse collapse-arrow bg-base-200 mb-10">
+          <input type="radio" name="my-accordion-2" />
+          <div className="collapse-title text-xl font-medium">
+            What is a humanitarian organization
+          </div>
+          <div className="collapse-content">
+            <p>
+              A humanitarian organization is a non-profit entity dedicated to
+              addressing human suffering and promoting human welfare. These
+              organizations often provide aid and assistance to populations
+              affected by crises such as natural disasters, armed conflicts,
+              poverty, and other emergencies.
             </p>
           </div>
         </div>

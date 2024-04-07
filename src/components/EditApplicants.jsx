@@ -1,136 +1,119 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "../api/axios";
 import AppContext from "../context/AppProvider";
 import { FaTimes } from "react-icons/fa";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const EditWinner = () => {
-  const { getLotteryWinners } = useContext(AppContext);
-  const [image, setImage] = useState("");
+const EditApplicants = () => {
+  const {
+    reqName,
+    reqWinningNumber,
+    reqNationality,
+    reqBirthDate,
+    reqTel,
+    reqEmail,
+    reqAddress,
+    id,
+  } = useParams();
+  const navigate = useNavigate();
+  const { getApplicants } = useContext(AppContext);
   const [fullname, setFullname] = useState("");
-  const [amountWon, setAmountWon] = useState("");
   const [nationality, setNationality] = useState("");
+  const [email, setEmail] = useState("");
+  const [winningNumber, setWinningNumber] = useState("");
+  const [birthDate, setBirthDate] = useState("");
+  const [tel, setTel] = useState("");
+  const [address, setAddress] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [content, setContent] = useState("");
-  const [luckyNumber, setLuckyNumber] = useState("");
-  const [successMsg, setSuccessMsg] = useState("");
-  const [id, setId] = useState("");
-  const [errMsg, setErrMsg] = useState("");
-  const fileRef = useRef();
-  const { reqName, reqAmount, reqNationality, reqId, reqLuckyNumber } =
-    useParams();
+  const [ssMsg, setSsMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     setFullname(reqName);
-    setAmountWon(reqAmount);
+    setWinningNumber(reqWinningNumber);
     setNationality(reqNationality);
-    setLuckyNumber(reqLuckyNumber);
-    setId(reqId);
+    setBirthDate(reqBirthDate);
+    setEmail(reqEmail);
+    setTel(reqTel);
+    setAddress(reqAddress);
   }, []);
-
-  useEffect(() => {
-    if (successMsg) {
-      setContent(
-        <div className="toast">
-          <div className="alert alert-info bg-blue-500">
-            <span>
-              {successMsg} <FaTimes onClick={setSuccessMsg("")} />
-            </span>
-          </div>
-        </div>
-      );
-    } else if (errMsg) {
-      setContent(
-        <div className="toast">
-          <div className="alert alert-info bg-red-500">
-            <span>
-              {errMsg} <FaTimes onClick={setErrMsg("")} />
-            </span>
-          </div>
-        </div>
-      );
-    } else {
-      setContent("");
-    }
-  }, [successMsg, errMsg]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     try {
       await axios.patch(
-        "/lotteryInfo",
+        "/apply",
         {
-          picture: image,
-          fullname,
-          amountWon,
-          nationality,
           id,
+          winningNumber,
+          address,
+          birthDate,
+          tel,
+          email,
+          fullname,
+          nationality,
         },
         {
           headers: { "Content-Type": "application/json" },
         }
       );
-      await getLotteryWinners();
-      setSuccessMsg("winner updated successfully");
+      await getApplicants();
+      setFullname("");
+      setNationality("");
+      setEmail("");
+      setAddress("");
+      setBirthDate("");
+      setTel("");
+      setWinningNumber("");
+      setSsMsg("New applicant created successfully");
+      setErrorMsg("");
+      navigate("/admin");
     } catch (err) {
+      setSsMsg("");
       if (!err?.response) {
-        setErrMsg("Please Check Your Internet Connection");
+        setErrorMsg("Please Check Your Internet Connection");
       } else if (err.response?.status === 400) {
-        setErrMsg("All Fields Are Required");
+        setErrorMsg("All Fields Are Required");
       } else if (err.response?.status === 409) {
-        setErrMsg("Item Already Exists");
-      } else if (err.response?.status === 413) {
-        setErrMsg("Image Size Is Too Large");
+        setErrorMsg("Item Already Exists");
       } else {
-        setErrMsg("Submission Failed");
+        setErrorMsg("Submission Failed");
       }
     } finally {
       setIsLoading(false);
     }
   };
 
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
-
-  const uploadImage = async (event) => {
-    const file = event.target.files[0];
-    const base64 = await convertToBase64(file);
-    setImage(base64);
-  };
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Create a New Lottery Winner</h1>
+            <h1 className="text-5xl font-bold">Claim Application</h1>
             <p className="py-6">
               Please ensure all fields are filled in correctly.
             </p>
           </div>
           <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <form className="card-body" onSubmit={handleSubmit}>
-              {content}
-              <input
-                accepts="image/*"
-                onChange={(e) => uploadImage(e)}
-                type="file"
-                ref={fileRef}
-                filename="image"
-                className="file-input file-input-bordered file-input-info w-full max-w-xs"
-              />
+              {ssMsg && (
+                <div className="text-red-100 w-full text-center bg-blue-500">
+                  <span>
+                    {ssMsg}&nbsp;
+                    <FaTimes onClick={setSsMsg("")} />
+                  </span>
+                </div>
+              )}
+
+              {errorMsg && (
+                <div className="text-slate-100 w-full text-center bg-red-500">
+                  <span>
+                    {errorMsg}&nbsp;
+                    <FaTimes onClick={setErrorMsg("")} />
+                  </span>
+                </div>
+              )}
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Enter Full Name</span>
@@ -146,27 +129,16 @@ const EditWinner = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Enter Lucky Number</span>
+                  <span className="label-text">Winning Number</span>
                 </label>
                 <input
                   type="text"
-                  value={luckyNumber}
-                  onChange={(e) => setLuckyNumber(e.target.value)}
-                  required
-                  placeholder="lucky number"
-                  className="input input-bordered input-primary w-full  max-w-xs"
-                />
-              </div>
-              <div className="form-control">
-                <label className="label"></label>
-                <input
-                  type="number"
-                  value={amountWon}
+                  value={winningNumber}
                   onChange={(e) => {
-                    setAmountWon(e.target.value);
+                    setWinningNumber(e.target.value);
                   }}
                   required
-                  placeholder="Amount won"
+                  placeholder="winning number"
                   className="input input-bordered input-secondary w-full  max-w-xs"
                 />
               </div>
@@ -180,6 +152,7 @@ const EditWinner = () => {
                   value={nationality}
                   onChange={(e) => {
                     setNationality(e.target.value);
+                    console.log(e.target.value);
                   }}
                 >
                   <option value="">Nationality</option>
@@ -482,7 +455,64 @@ const EditWinner = () => {
                   <option value="Zimbabwe">Zimbabwe</option>
                 </select>
               </div>
-
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Date of birth</span>
+                </label>
+                <input
+                  type="date"
+                  value={birthDate}
+                  onChange={(e) => {
+                    setBirthDate(e.target.value);
+                  }}
+                  required
+                  placeholder="dd/mm/yy"
+                  className="input input-bordered input-secondary w-full  max-w-xs"
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Enter phone number</span>
+                </label>
+                <input
+                  type="tel"
+                  value={tel}
+                  onChange={(e) => setTel(e.target.value)}
+                  required
+                  placeholder="phone"
+                  className="input input-bordered input-primary w-full  max-w-xs"
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Enter Email</span>
+                </label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                  required
+                  placeholder="email address"
+                  className="input input-bordered input-secondary w-full  max-w-xs"
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Enter Address</span>
+                </label>
+                <input
+                  type="text"
+                  value={address}
+                  onChange={(e) => {
+                    setAddress(e.target.value);
+                  }}
+                  required
+                  placeholder="address"
+                  className="input input-bordered input-accent w-full  max-w-xs"
+                />
+              </div>
               <div className="form-control mt-6">
                 <button
                   className="btn btn-primary"
@@ -499,4 +529,4 @@ const EditWinner = () => {
   );
 };
 
-export default EditWinner;
+export default EditApplicants;

@@ -56,7 +56,9 @@ const Drawer = () => {
             </label>
           </div>
           <div className="flex-1 px-2 mx-2 font-bold text-sm justify-between">
-            {companyName}
+            <Link to="/" className="w-max">
+              {companyName}
+            </Link>
             {auth?.length ? (
               <button
                 className="text-xs btn btn-secondary"
