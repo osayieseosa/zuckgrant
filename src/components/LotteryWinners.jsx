@@ -48,7 +48,7 @@ const LotteryWinners = () => {
                   </h2>
                   {lotteryWinner?.luckyNumber && (
                     <p className="text-xs">
-                      Lucky Number:&nbsp;{lotteryWinner.luckyNumber}
+                      Winning Number:&nbsp;{lotteryWinner.luckyNumber}
                     </p>
                   )}
                   <p className="text-xs">
