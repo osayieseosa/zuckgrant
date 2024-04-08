@@ -46,7 +46,7 @@ const EditApplicants = () => {
         "/apply",
         {
           id,
-          luckyNumber:winningNumber,
+          winningNumber,
           address,
           birthDate,
           tel,
