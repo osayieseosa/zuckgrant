@@ -65,6 +65,7 @@ const EditWinner = () => {
           fullname,
           amountWon,
           nationality,
+          luckyNumber,
           id,
         },
         {
