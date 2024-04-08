@@ -137,14 +137,14 @@ const NewUser = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Enter Lucky Number</span>
+                  <span className="label-text">Enter Winning Number</span>
                 </label>
                 <input
                   type="text"
                   value={luckyNumber}
                   onChange={(e) => setLuckyNumber(e.target.value)}
                   required
-                  placeholder="Full Name"
+                  placeholder="winning number"
                   className="input input-bordered input-primary w-full  max-w-xs"
                 />
               </div>
