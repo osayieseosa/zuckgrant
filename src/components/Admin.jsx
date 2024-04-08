@@ -91,7 +91,7 @@ const Admin = () => {
               <th>Name</th>
               <th>Amount</th>
               <th>Country</th>
-              <th>Lucky Number</th>
+              <th>Winning Number</th>
               <th>Edit</th>
             </tr>
           </thead>
