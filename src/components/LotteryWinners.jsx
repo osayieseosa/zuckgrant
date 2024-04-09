@@ -55,7 +55,11 @@ const LotteryWinners = () => {
                     Nationality:&nbsp;{lotteryWinner.nationality}
                   </p>
                   <p className="text-xs">
-                    Amount won:&nbsp;{lotteryWinner.amountWon}
+                    Amount won:&nbsp;{Number(lotteryWinner.amountWon).toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                        minimumFractionDigits: 2,
+                      })}
                   </p>
                 </div>
               </div>
